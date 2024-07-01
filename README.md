@@ -1,6 +1,6 @@
 # The hunting hyena
 
-[comment]: [Click here to see deployed game](http://github.com)
+[Click here to see deployed game](http://github.com)
 
 ## Description
 
