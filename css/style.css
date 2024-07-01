@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Kanit", sans-serif;
+}
+
+#game-intro {
+  background-image: url("../images/start-pic.jpg");
+  background-position: 0 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+#game-name {
+  font-size: 3em;
+  color: brown;
+  text-align: center;
+  padding: 20px;
+}
+
+#description-paragraph {
+  font-size: 1.5em;
+  text-align: center;
+  width: 500px;
+  color: black;
+  padding: 50px;
+  margin: 150px auto 20px auto;
+  border: 2px solid white;
+  border-radius: 6px;
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+#buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  margin-top: 50px;
+}
+
+#home-screen button {
+  font-size: 1em;
+  padding: 10px 20px;
+  background-color: #6b4f4f;
+  color: ivory;
+  border: 2px solid white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#home-screen button:hover {
+  background-color: #a1d282;
+}
+
+#instruction-div {
+  display: none;
+}
+
+#stats-container {
+  display: none;
+}
+
+#instruction-paragraph {
+  text-align: center;
+  margin: auto;
+  font-size: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+  color: brown;
+}
+
+#ul-div {
+  margin-top: 50px;
+  width: 35%;
+}
+
+ul {
+  padding: 20px auto;
+  margin: 50px;
+  list-style-type: none;
+  color: white;
+  justify-content: center;
+  border: 2px solid white;
+  border-radius: 6px;
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+#instruction-div img {
+  width: 50px;
+  height: auto;
+}
+
+#instruction-div span {
+  text-align: right;
+}
+
+#ul-div li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+
+#ul-div img {
+  order: 1;
+  margin-right: 10px;
+}
+
+#ul-div span {
+  order: 2;
+  text-align: right;
+}
