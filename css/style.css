@@ -10,7 +10,13 @@ html {
   font-family: "Kanit", sans-serif;
 }
 
-#game-intro {
+#game-name,
+#instruction-paragraph,
+h2 {
+  color: brown;
+}
+
+main {
   background-image: url("../images/start-pic.jpg");
   background-position: 0 0;
   background-size: cover;
@@ -20,7 +26,6 @@ html {
 
 #game-name {
   font-size: 3em;
-  color: brown;
   text-align: center;
   padding: 20px;
 }
@@ -44,7 +49,7 @@ html {
   margin-top: 50px;
 }
 
-#home-screen button {
+button {
   font-size: 1em;
   padding: 10px 20px;
   background-color: #6b4f4f;
@@ -54,7 +59,7 @@ html {
   cursor: pointer;
 }
 
-#home-screen button:hover {
+button:hover {
   background-color: #a1d282;
 }
 
@@ -62,30 +67,43 @@ html {
   display: none;
 }
 
+#left-column {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 #stats-container {
   display: none;
 }
 
 #instruction-paragraph {
-  text-align: center;
-  margin: auto;
+  text-align: left;
+  margin-bottom: 20px;
   font-size: 20px;
-  padding-left: 100px;
-  padding-right: 100px;
-  color: brown;
+  padding: 0 20px;
+}
+
+#go-back {
+  color: ivory;
+  border: 2px solid white;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 20px;
 }
 
 #ul-div {
-  margin-top: 50px;
-  width: 35%;
+  flex: 1; /* Take one-thirds of the space */
+  max-width: 35%;
+  padding: 20px;
 }
 
 ul {
-  padding: 20px auto;
-  margin: 50px;
+  padding: 0;
   list-style-type: none;
   color: white;
-  justify-content: center;
   border: 2px solid white;
   border-radius: 6px;
   background-color: rgba(255, 0, 0, 0.2);
@@ -102,17 +120,39 @@ ul {
 
 #ul-div li {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
 #ul-div img {
-  order: 1;
+  width: 30px;
   margin-right: 10px;
+  height: auto;
 }
 
 #ul-div span {
-  order: 2;
-  text-align: right;
+  text-align: left;
+  margin-left: 10px;
+}
+
+#game-screen {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  color: white;
+}
+
+#stats-container {
+  padding: 10px;
+}
+
+#stats {
+  font-size: 24px;
+}
+
+#end-game-screen {
+  display: none;
 }
