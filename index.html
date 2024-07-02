@@ -5,93 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./css/style.css" />
-    <title>The hunting Hyena</title>
+    <title>The Hunting Hyena</title>
   </head>
   <body>
-    <main>
+    <main id="main-element">
       <!-- Homepage -->
-      <div id="game-intro">
-        <!--         <img src="./images/start-pic.jpg" alt="Elephant picture" />
- -->
-        <div id="home-screen">
-          <h1 id="game-name">The Hunting Hyena</h1>
-          <div id="section-home">
-            <p id="description-paragraph">
-              The hyena is hungry and needs to go hunting to feed itself. Be
-              careful not to become the prey.
-              <br />
-              <br />
-              Read the instructions very carefully before you start the game.
-            </p>
-            <div id="buttons-container">
-              <button id="start-button">Start Game</button>
-              <button id="instruction-button">Instructions</button>
-            </div>
-          </div>
-
-          <!-- Instruction Screen -->
-          <div id="instruction-div">
-            <div id="left-column">
-              <p id="instruction-paragraph">
-                The instruction are very simple, go out there and hunt as many
-                prey as possible and don't get hunted by those lions.
-              </p>
-              <button id="go-back">GO BACK</button>
-            </div>
-            <div id="ul-div">
-              <ul>
-                <li>
-                  <img src="./images/up.png" alt="arrow up" />
-                  <img src="./images/w.png" alt="letter w" />
-                  <span> MOVE UP</span>
-                </li>
-                <li>
-                  <img src="./images/down.png" alt="arrow down" />
-                  <img src="./images/s.png" alt="letter s" />
-                  <span> MOVE DOWN</span>
-                </li>
-                <li>
-                  <img src="./images/right.png" alt="arrow right" />
-                  <img src="./images/d.png" alt="letter d" srcset="" />
-                  <span> MOVE RIGHT</span>
-                </li>
-                <li>
-                  <img src="./images/left.png" alt="arrow left" />
-                  <img src="./images/a.png" alt="letter a" />
-                  <span> MOVE LEFT</span>
-                </li>
-                <li>
-                  <img src="./images/pause.png" alt="letter p" />
-                  <span> PAUSE</span>
-                </li>
-                <li>
-                  <img src="./images/enter.png" alt="enter" />
-                  <span>RESTART THE GAME</span>
-                </li>
-                <li>
-                  <img src="./images/backspace.png" alt="backspace" />
-                  <span>GO TO HOMEPAGE</span>
-                </li>
-              </ul>
-            </div>
+      <div id="home-screen">
+        <h1 id="game-name">The Hunting Hyena</h1>
+        <div id="section-home">
+          <p id="description-paragraph">
+            The hyena is hungry and needs to go hunting to feed itself. Be
+            careful not to become the prey.
+            <br />
+            <br />
+            Read the instructions very carefully before you start the game.
+          </p>
+          <div id="buttons-container">
+            <button id="start-button">Start Game</button>
+            <button id="instruction-button">Instructions</button>
           </div>
         </div>
       </div>
 
-      <div id="stats-container">
-        <h2 id="stats">Stats</h2>
-        <p id="score">Score: <span id="score-number">0</span></p>
-        <p id="lives">Lives: <span id="lives-numer">3</span></p>
+      <!-- Instruction Screen -->
+      <div id="instruction-div">
+        <div id="left-column">
+          <p id="instruction-paragraph">
+            The instructions are very simple: go out there and hunt as many prey
+            as possible and don't get hunted by those lions.
+          </p>
+          <button id="go-back">GO BACK</button>
+        </div>
+        <div id="ul-div">
+          <ul>
+            <li>
+              <img src="./images/up.png" alt="arrow up" />
+              <img src="./images/w.png" alt="letter w" />
+              <span> MOVE UP</span>
+            </li>
+            <li>
+              <img src="./images/down.png" alt="arrow down" />
+              <img src="./images/s.png" alt="letter s" />
+              <span> MOVE DOWN</span>
+            </li>
+            <li>
+              <img src="./images/right.png" alt="arrow right" />
+              <img src="./images/d.png" alt="letter d" srcset="" />
+              <span> MOVE RIGHT</span>
+            </li>
+            <li>
+              <img src="./images/left.png" alt="arrow left" />
+              <img src="./images/a.png" alt="letter a" />
+              <span> MOVE LEFT</span>
+            </li>
+            <li>
+              <img src="./images/pause.png" alt="letter p" />
+              <span> PAUSE</span>
+            </li>
+            <li>
+              <img src="./images/enter.png" alt="enter" />
+              <span>RESTART THE GAME</span>
+            </li>
+            <li>
+              <img src="./images/backspace.png" alt="backspace" />
+              <span>GO TO HOMEPAGE</span>
+            </li>
+          </ul>
+        </div>
       </div>
+
       <!-- Game Screen -->
-      <!-- #game-screen is initially hidden -->
       <div id="game-screen">
         <div id="play-screen"></div>
+        <!-- Stats Container -->
+        <div id="stats-container">
+          <p id="stats">Stats</p>
+          <p id="score">Score: <span id="score-number">0</span></p>
+          <p id="lives">Lives: <span id="lives-number">3</span></p>
+        </div>
       </div>
 
-      <!-- Game End Screen -->
+      <!-- End Game Screen -->
+      <div id="end-game-screen">
+        <div id="end-game-one">
+          <h2 id="game-over">GAME OVER</h2>
+          <p id="paragraph-end-game-one">
+            You just died and now all the little hyenas are starving. Try to not
+            get hunted next time.
+          </p>
+        </div>
+        <div id="end-game-two">
+          <h2 id="time-out">TIME IS OUT</h2>
+          <p id="end-game-two">
+            You ran out of time, you and your little hyenas are still starving.
+            Be faster next time.
+          </p>
+        </div>
+        <button id="restart-button">RESTART</button>
+      </div>
     </main>
 
-    <script src="./js/index.js"></script>
+    <!-- Load scripts -->
+    <script type="module" src="./js/index.js"></script>
+    <script type="module" src="./js/game.js"></script>
+    <script type="module" src="./js/player.js"></script>
+    <script type="module" src="./js/obstacle.js"></script>
   </body>
 </html>
