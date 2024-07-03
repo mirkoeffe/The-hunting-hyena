@@ -4,16 +4,34 @@ window.onload = function () {
     const startButton = document.querySelector("#start-button");
     const instructionButton = document.querySelector("#instruction-button");
     const restartButton = document.querySelector("#restart-button");
+    const startAudio = document.querySelector("#start-audio");
+    const gameAudio = document.querySelector("#main-audio");
     let game = new Game();
 
+    startAudio.volume = 0.3;
+    gameAudio.volume = 0.3;
+
+    function playHomeAudio() {
+        startAudio.play().catch((error) => {
+            console.error("Error attempting to play home audio:", error);
+            document.body.addEventListener('click', playHomeAudio, { once: true });
+        })
+    }
+
+    playHomeAudio();
+
+
     startButton.addEventListener("click", function () {
-        console.log("start game");
+        startAudio.pause();
+        gameAudio.play().catch((error) => {
+            console.error("Error attempting to play game audio:", error);
+        });
         game.startGame();
     });
 
     instructionButton.addEventListener("click", function () {
         game.showInstructions();
-        console.log("Button clicked");
+
     });
 
     restartButton.addEventListener("click", () => {

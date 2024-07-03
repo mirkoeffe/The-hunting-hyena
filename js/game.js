@@ -146,7 +146,6 @@ class Game {
             obstacle.move(this.isPaused);
 
             if (this.player.didCollide(obstacle)) {
-                console.log('Collision detected with:', obstacle);
                 obstacle.element.remove();
                 this.obstacles.splice(i, 1);
 
@@ -198,6 +197,12 @@ class Game {
     }
 
     gameOver() {
+        const gameAudio = document.getElementById('main-audio');
+        const startAudio = document.getElementById('start-audio');
+
+        startAudio.pause();
+        gameAudio.pause();
+        gameAudio.currentTime = 0;
         this.clearGameElements();
         this.gameIsOver = true;
         this.gameScreen.style.display = "none";
@@ -207,6 +212,12 @@ class Game {
     }
 
     timeIsOver() {
+        const gameAudio = document.getElementById('main-audio');
+        const startAudio = document.getElementById('start-audio');
+
+        startAudio.pause();
+        gameAudio.pause();
+        gameAudio.currentTime = 0;
         this.clearGameElements();
         this.gameIsOver = true;
         this.gameScreen.style.display = "none";
@@ -215,7 +226,6 @@ class Game {
         this.endGameScreenTwo.style.display = "flex";
     }
 
-    // restartGame() doesn't work properly, player doesn't show up after restarting the game
 
     restartGame() {
         this.clearGameElements();
