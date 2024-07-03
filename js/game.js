@@ -38,6 +38,11 @@ class Game {
         goBackButton.addEventListener("click", () => {
             this.showHomeScreen();
         });
+
+        const restartButton = document.querySelector("#restart-button");
+        restartButton.addEventListener("click", () => {
+            this.restartGame();
+        });
     }
 
     showInstructions() {
@@ -62,6 +67,7 @@ class Game {
         this.gameIntervalId = setInterval(() => {
             this.gameLoop();
         }, this.gameLoopFrequency);
+        this.generateObstacles();
     }
 
     gameLoop() {
@@ -100,9 +106,17 @@ class Game {
             this.gameOver();
         }
 
-        if (Math.random() > 0.5 && this.obstacles.length < 1) {
+        if (Math.random() > 0.98 && this.obstacles.length < 1) {
             this.obstacles.push(new Obstacle(this.gameScreen));
         }
+    }
+
+    generateObstacles() {
+        if (this.gameIsOver) return;
+
+        this.obstacles.push(new Obstacle(this.gameScreen));
+        const nextInterval = Math.ceil((Math.random() + 2) * 3000);
+        setTimeout(() => this.generateObstacles(), nextInterval);
     }
 
     pause() {
@@ -127,10 +141,35 @@ class Game {
         this.endGameScreenTwo.style.display = "flex";
     }
 
+    // restartGame() doesn't work properly, player doesn't show up after restarting the game
+
     restartGame() {
+
         // implement the enter key to restart the game at the end of the game (end screen)
-        // counter must be reset to 0
-        // lives must be reset to 3
+
+
+        /* this.lives = 3;
+        this.score = 0;
+        this.gameIsOver = false;
+        this.obstacles = [];
+
+        document.querySelector('#score-number').innerHTML = this.score;
+        document.querySelector('#lives-number').innerHTML = this.lives;
+
+        const obstacles = document.querySelectorAll('.obstacle');
+        obstacles.forEach(obstacle => {
+            obstacle.remove();
+        });
+
+        this.player.left = 100;
+        this.player.top = 100;
+        this.player.updatePosition();
+
+        this.endGameScreen.style.display = "none";
+        this.endGameScreenOne.style.display = "none";
+        this.endGameScreenTwo.style.display = "none";
+
+        this.startGame(); */
         // timer must be reset to 60
     }
 }
