@@ -3,6 +3,7 @@ import Game from './game.js';
 window.onload = function () {
     const startButton = document.querySelector("#start-button");
     const instructionButton = document.querySelector("#instruction-button");
+    const restartButton = document.querySelector("#restart-button");
     let game;
 
     startButton.addEventListener("click", function () {
@@ -13,7 +14,7 @@ window.onload = function () {
 
     instructionButton.addEventListener("click", function () {
         if (!game) {
-            game = new Game(); // Ensure game is initialized
+            game = new Game(); // Ensures the initialization of the game
         }
         game.showInstructions();
         console.log("Button clicked");
