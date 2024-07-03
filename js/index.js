@@ -4,20 +4,20 @@ window.onload = function () {
     const startButton = document.querySelector("#start-button");
     const instructionButton = document.querySelector("#instruction-button");
     const restartButton = document.querySelector("#restart-button");
-    let game;
+    let game = new Game();
 
     startButton.addEventListener("click", function () {
         console.log("start game");
-        game = new Game();
         game.startGame();
     });
 
     instructionButton.addEventListener("click", function () {
-        if (!game) {
-            game = new Game(); // Ensures the initialization of the game
-        }
         game.showInstructions();
         console.log("Button clicked");
+    });
+
+    restartButton.addEventListener("click", () => {
+        game.restartGame();
     });
 
     window.addEventListener("keydown", handleKeydown);
@@ -26,7 +26,7 @@ window.onload = function () {
     function handleKeydown(e) {
         if (!game) return;
         const key = e.key;
-        console.log(key);
+
         const possibleKeystrokes = [
             "ArrowLeft",
             "ArrowUp",
@@ -62,7 +62,9 @@ window.onload = function () {
                     game.player.directionY = 5;
                     break;
                 case "Enter":
-                    game.restartGame();
+                    if (isGameScreenVisible() || isEndScreenVisible()) {
+                        game.restartGame();
+                    }
                     break;
                 case "p":
                     game.pause();
@@ -70,9 +72,6 @@ window.onload = function () {
                 case "Backspace":
                     goBackHome();
                     break;
-
-
-                // Pause, and Backspace to be implemented
             }
         }
     }
@@ -92,7 +91,6 @@ window.onload = function () {
         ];
 
         if (possibleKeystrokes.includes(key)) {
-
             switch (key) {
                 case "ArrowLeft":
                 case "a":
@@ -116,5 +114,15 @@ window.onload = function () {
 
     function goBackHome() {
         location.reload();
+    }
+
+    function isGameScreenVisible() {
+        const gameScreen = document.querySelector("#game-screen");
+        return gameScreen && gameScreen.style.display === "block";
+    }
+
+    function isEndScreenVisible() {
+        const endGameScreen = document.querySelector("#end-game-screen");
+        return endGameScreen && endGameScreen.style.display === "block";
     }
 };

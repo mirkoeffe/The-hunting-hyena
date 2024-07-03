@@ -19,7 +19,8 @@ class Player {
         this.gameScreen.appendChild(this.element);
     }
 
-    move() {
+    move(isPaused) {
+        if (isPaused) return;
         this.left += this.directionX;
         this.top += this.directionY;
 

@@ -1,9 +1,8 @@
-// obstacle.js
 class Obstacle {
     constructor(gameScreen) {
         this.gameScreen = gameScreen;
-        this.top = Math.floor(Math.random() * (this.gameScreen.offsetHeight - 50));
-        this.left = this.gameScreen.offsetWidth; // Start from the right edge
+        this.top = Math.floor(Math.random() * (this.gameScreen.offsetHeight - 150)); // Ensure lion stays within the screen
+        this.left = this.gameScreen.offsetWidth; // Start from the right side
         this.width = 150;
         this.height = 150;
         this.element = document.createElement('img');
@@ -18,8 +17,9 @@ class Obstacle {
         this.gameScreen.appendChild(this.element);
     }
 
-    move() {
-        this.left -= 1; // Move to the left
+    move(isPaused) {
+        if (isPaused) return;
+        this.left -= 3;
         this.updatePosition();
     }
 
@@ -29,4 +29,16 @@ class Obstacle {
     }
 }
 
-export default Obstacle;
+class BonusObstacle extends Obstacle {
+    constructor(gameScreen) {
+        super(gameScreen)
+
+
+        this.element.src = "images/zebra.png";
+
+
+        this.gameScreen.appendChild(this.element);
+    }
+}
+
+export { Obstacle, BonusObstacle };

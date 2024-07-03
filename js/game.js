@@ -1,6 +1,5 @@
-
 import Player from './player.js';
-import Obstacle from './obstacle.js';
+import { Obstacle, BonusObstacle } from './obstacle.js';
 
 class Game {
     constructor(timeRemaining) {
@@ -16,14 +15,7 @@ class Game {
         this.endGameScreen = document.querySelector("#end-game-screen");
         this.endGameScreenOne = document.querySelector("#end-game-one");
         this.endGameScreenTwo = document.querySelector("#end-game-two");
-        this.player = new Player(
-            this.gameScreen,
-            0,
-            100,
-            100,
-            150,
-            "./images/hyena.png"
-        );
+        this.player = null;
         this.height = 100;
         this.width = 100;
         this.obstacles = [];
@@ -31,21 +23,19 @@ class Game {
         this.score = 0;
         this.lives = 3;
         this.gameIsOver = false;
+        this.isPaused = false;
         this.gameIntervalId = null;
+        this.obstacleIntervalId = null;
         this.gameLoopFrequency = Math.round(1000 / 60);
 
         const goBackButton = document.querySelector("#go-back");
         goBackButton.addEventListener("click", () => {
             this.showHomeScreen();
         });
-
-        const restartButton = document.querySelector("#restart-button");
-        restartButton.addEventListener("click", () => {
-            this.restartGame();
-        });
     }
 
     showInstructions() {
+        this.clearGameElements();
         this.sectionHome.style.display = "none";
         this.instructionDiv.style.display = "flex";
         this.descriptionParagraph.style.display = "block";
@@ -53,47 +43,122 @@ class Game {
     }
 
     showHomeScreen() {
+        this.clearGameElements();
         this.sectionHome.style.display = "block";
         this.instructionDiv.style.display = "none";
     }
 
     startGame() {
+        this.clearGameElements();
+        this.initializeGame();
+
         this.gameScreen.style.width = this.width + "%";
         this.gameScreen.style.height = this.height + "%";
         this.gameScreen.style.backgroundPosition = "0% 100%";
         this.homeScreen.style.display = "none";
         this.gameScreen.style.display = "block";
         this.statsContainer.style.display = "block";
+        this.startTimer();
+        this.updateTimerDisplay();
         this.gameIntervalId = setInterval(() => {
             this.gameLoop();
         }, this.gameLoopFrequency);
         this.generateObstacles();
     }
 
-    gameLoop() {
-        this.update();
-        if (this.gameIsOver) {
+    clearIntervals() {
+        if (this.gameIntervalId) {
             clearInterval(this.gameIntervalId);
+            this.gameIntervalId = null;
+        }
+        if (this.obstacleIntervalId) {
+            clearTimeout(this.obstacleIntervalId);
+            this.obstacleIntervalId = null;
+        }
+        if (this.timeIntervalId) {
+            clearInterval(this.timeIntervalId);
+            this.timeIntervalId = null;
         }
     }
 
+    clearGameElements() {
+        this.clearIntervals();
+
+        if (this.player) {
+            this.player.element.remove();
+            this.player = null;
+        }
+
+        this.obstacles.forEach(obstacle => obstacle.element.remove());
+        this.obstacles = [];
+    }
+
+    initializeGame() {
+        this.player = new Player(
+            this.gameScreen,
+            0,
+            200,
+            100,
+            150,
+            "./images/hyena.png"
+        );
+        this.score = 0;
+        this.lives = 3;
+        this.timeRemaining = 5;
+        this.gameIsOver = false;
+        this.isPaused = false;
+
+        document.querySelector('#score-number').innerHTML = this.score;
+        document.querySelector('#lives-number').innerHTML = this.lives;
+        this.updateTimerDisplay();
+    }
+
+    startTimer() {
+        this.timeIntervalId = setInterval(() => {
+            if (this.isPaused || this.gameIsOver) return;
+            this.timeRemaining--;
+            this.updateTimerDisplay();
+            if (this.timeRemaining === 0) {
+                this.timeIsOver();
+            }
+        }, 1000);
+    }
+
+    updateTimerDisplay() {
+        const timerElement = document.querySelector('#timer')
+
+        const seconds = this.timeRemaining % 60;
+        timerElement.innerHTML = `00:${seconds < 10 ? "0" : ""}${seconds}`;
+    }
+
+    gameLoop() {
+        if (this.isPaused || this.gameIsOver) return;
+        this.update();
+    }
+
     update() {
-        this.player.move();
+        this.player.move(this.isPaused);
         const idScore = document.querySelector('#score-number');
         const idLives = document.querySelector('#lives-number');
 
         for (let i = 0; i < this.obstacles.length; i++) {
             const obstacle = this.obstacles[i];
-            obstacle.move();
+            obstacle.move(this.isPaused);
 
             if (this.player.didCollide(obstacle)) {
                 obstacle.element.remove();
                 this.obstacles.splice(i, 1);
-                this.lives--;
+
+                if (obstacle instanceof BonusObstacle) {
+                    this.score += 2;
+                } else {
+                    this.lives--;
+                }
+
+                idScore.innerHTML = this.score;
                 idLives.innerHTML = this.lives;
                 i--;
-            }
-            else if (obstacle.left < 0) {
+            } else if (obstacle.left < 0) {
                 obstacle.element.remove();
                 this.obstacles.splice(i, 1);
                 this.score++;
@@ -105,72 +170,50 @@ class Game {
         if (this.lives === 0) {
             this.gameOver();
         }
-
-        if (Math.random() > 0.98 && this.obstacles.length < 1) {
-            this.obstacles.push(new Obstacle(this.gameScreen));
-        }
     }
 
-    generateObstacles() {
+    generateObstacle() {
         if (this.gameIsOver) return;
 
-        this.obstacles.push(new Obstacle(this.gameScreen));
-        const nextInterval = Math.ceil((Math.random() + 2) * 3000);
-        setTimeout(() => this.generateObstacles(), nextInterval);
+        const randomValue = Math.random();
+        if (randomValue < 0.3) {
+            this.obstacles.push(new Obstacle(this.gameScreen));
+        } else {
+            this.obstacles.push(new BonusObstacle(this.gameScreen));
+        }
+
+        const nextInterval = (Math.random() + 1) * 2000;
+        this.obstacleIntervalId = setTimeout(() => this.generateObstacle(), nextInterval);
     }
 
     pause() {
-        // implement the p key to pause the game only during gameplay
+        this.isPaused = !this.isPaused;
     }
 
     gameOver() {
-        this.player.element.remove();
-        this.obstacles.forEach(obstacle => { obstacle.element.remove() });
+        this.clearGameElements();
         this.gameIsOver = true;
         this.gameScreen.style.display = "none";
         this.endGameScreen.style.display = "block";
         this.endGameScreenOne.style.display = "flex";
+        this.endGameScreenTwo.style.display = "none";
     }
 
     timeIsOver() {
-        this.player.element.remove();
-        this.obstacles.forEach(obstacle => { obstacle.element.remove() });
+        this.clearGameElements();
         this.gameIsOver = true;
         this.gameScreen.style.display = "none";
         this.endGameScreen.style.display = "block";
+        this.endGameScreenOne.style.display = "none";
         this.endGameScreenTwo.style.display = "flex";
     }
 
     // restartGame() doesn't work properly, player doesn't show up after restarting the game
 
     restartGame() {
-
-        // implement the enter key to restart the game at the end of the game (end screen)
-
-
-        /* this.lives = 3;
-        this.score = 0;
-        this.gameIsOver = false;
-        this.obstacles = [];
-
-        document.querySelector('#score-number').innerHTML = this.score;
-        document.querySelector('#lives-number').innerHTML = this.lives;
-
-        const obstacles = document.querySelectorAll('.obstacle');
-        obstacles.forEach(obstacle => {
-            obstacle.remove();
-        });
-
-        this.player.left = 100;
-        this.player.top = 100;
-        this.player.updatePosition();
-
-        this.endGameScreen.style.display = "none";
-        this.endGameScreenOne.style.display = "none";
-        this.endGameScreenTwo.style.display = "none";
-
-        this.startGame(); */
-        // timer must be reset to 60
+        this.clearGameElements();
+        this.initializeGame();
+        this.startGame();
     }
 }
 
