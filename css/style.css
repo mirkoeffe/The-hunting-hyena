@@ -153,6 +153,38 @@ ul {
   font-size: 24px;
 }
 
-#end-game-screen {
+#end-game-screen,
+#end-game-one,
+#end-game-two {
   display: none;
+}
+
+#end-game-one {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#end-game-screen p {
+  border: 2px solid white;
+  border-radius: 6px;
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+#game-over,
+#time-out {
+  margin-top: 50px;
+  font-size: 44px;
+  padding: 20px;
+}
+
+#end-game-screen p {
+  font-size: 22px;
+  padding: 20px;
+  margin: auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+#restart-button {
 }

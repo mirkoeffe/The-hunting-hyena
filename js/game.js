@@ -3,7 +3,7 @@ import Player from './player.js';
 import Obstacle from './obstacle.js';
 
 class Game {
-    constructor() {
+    constructor(timeRemaining) {
         this.sectionHome = document.querySelector('#section-home');
         this.instructionDiv = document.querySelector("#instruction-div");
         this.descriptionParagraph = document.querySelector("#description-paragraph");
@@ -13,6 +13,9 @@ class Game {
         this.gameScreen = document.querySelector("#game-screen");
         this.statsContainer = document.querySelector("#stats-container");
         this.mainElement = document.querySelector("main-element");
+        this.endGameScreen = document.querySelector("#end-game-screen");
+        this.endGameScreenOne = document.querySelector("#end-game-one");
+        this.endGameScreenTwo = document.querySelector("#end-game-two");
         this.player = new Player(
             this.gameScreen,
             0,
@@ -24,6 +27,7 @@ class Game {
         this.height = 100;
         this.width = 100;
         this.obstacles = [];
+        this.timeRemaining = timeRemaining;
         this.score = 0;
         this.lives = 3;
         this.gameIsOver = false;
@@ -93,10 +97,10 @@ class Game {
         }
 
         if (this.lives === 0) {
-            this.endGame();
+            this.gameOver();
         }
 
-        if (Math.random() > 0.98 && this.obstacles.length < 1) {
+        if (Math.random() > 0.5 && this.obstacles.length < 1) {
             this.obstacles.push(new Obstacle(this.gameScreen));
         }
     }
@@ -105,8 +109,22 @@ class Game {
         // implement the p key to pause the game only during gameplay
     }
 
-    endGame() {
-        // implement the endGame method to end the game
+    gameOver() {
+        this.player.element.remove();
+        this.obstacles.forEach(obstacle => { obstacle.element.remove() });
+        this.gameIsOver = true;
+        this.gameScreen.style.display = "none";
+        this.endGameScreen.style.display = "block";
+        this.endGameScreenOne.style.display = "flex";
+    }
+
+    timeIsOver() {
+        this.player.element.remove();
+        this.obstacles.forEach(obstacle => { obstacle.element.remove() });
+        this.gameIsOver = true;
+        this.gameScreen.style.display = "none";
+        this.endGameScreen.style.display = "block";
+        this.endGameScreenTwo.style.display = "flex";
     }
 
     restartGame() {

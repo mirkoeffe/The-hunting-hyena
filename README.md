@@ -9,7 +9,7 @@ The hunting hyena game is a very simple game where the hyena must go on 1 minute
 ## Backlog Functionalities
 
 - Adding a third end game screen displayed only after reaching the maximum points (ca. 500 points)
-- Adding a level system to make the game little bit difficult
+- Adding a level system to make the game a little bit difficult
 - Adding a soundtrack
 
 ## States
@@ -27,6 +27,7 @@ The hunting hyena game is a very simple game where the hyena must go on 1 minute
 - JavaScript
 - Object Oriented Programming
 - JS Classes
+- JS Modules
 
 ## Data structure
 
