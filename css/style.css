@@ -174,8 +174,7 @@ ul {
   display: none;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* 
-  position: fixed; */
+  flex-direction: column;
   top: 0;
   left: 0;
   width: 100%;
@@ -191,7 +190,7 @@ ul {
   background-color: rgba(255, 0, 0, 0.2);
   font-size: 22px;
   padding: 20px;
-  margin: auto;
+  margin: 20px auto;
   max-width: 500px;
   text-align: center;
 }
@@ -206,4 +205,5 @@ ul {
 #restart-button {
   display: flex;
   justify-content: center;
+  margin: 20px auto;
 }

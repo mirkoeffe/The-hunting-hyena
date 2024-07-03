@@ -63,7 +63,7 @@ class Game {
         this.gameIntervalId = setInterval(() => {
             this.gameLoop();
         }, this.gameLoopFrequency);
-        this.generateObstacles();
+        this.generateObstacle();
     }
 
     clearIntervals() {
@@ -104,7 +104,7 @@ class Game {
         );
         this.score = 0;
         this.lives = 3;
-        this.timeRemaining = 5;
+        this.timeRemaining = 30;
         this.gameIsOver = false;
         this.isPaused = false;
 
@@ -146,6 +146,7 @@ class Game {
             obstacle.move(this.isPaused);
 
             if (this.player.didCollide(obstacle)) {
+                console.log('Collision detected with:', obstacle);
                 obstacle.element.remove();
                 this.obstacles.splice(i, 1);
 
@@ -161,22 +162,28 @@ class Game {
             } else if (obstacle.left < 0) {
                 obstacle.element.remove();
                 this.obstacles.splice(i, 1);
-                this.score++;
+
+                if (!(obstacle instanceof BonusObstacle)) {
+                    this.score++;
+                }
+
                 idScore.innerHTML = this.score;
                 i--;
             }
         }
 
         if (this.lives === 0) {
+            console.log('Game over. Lives are zero.');
             this.gameOver();
         }
     }
+
 
     generateObstacle() {
         if (this.gameIsOver) return;
 
         const randomValue = Math.random();
-        if (randomValue < 0.3) {
+        if (randomValue < 0.35) {
             this.obstacles.push(new Obstacle(this.gameScreen));
         } else {
             this.obstacles.push(new BonusObstacle(this.gameScreen));

@@ -1,7 +1,7 @@
 class Obstacle {
     constructor(gameScreen) {
         this.gameScreen = gameScreen;
-        this.top = Math.floor(Math.random() * (this.gameScreen.offsetHeight - 150)); // Ensure lion stays within the screen
+        this.top = Math.floor(Math.random() * (this.gameScreen.offsetHeight - 150)); // offsetHeight - 150 to avoid the lion to be out of the screen
         this.left = this.gameScreen.offsetWidth; // Start from the right side
         this.width = 150;
         this.height = 150;
@@ -31,13 +31,8 @@ class Obstacle {
 
 class BonusObstacle extends Obstacle {
     constructor(gameScreen) {
-        super(gameScreen)
-
-
+        super(gameScreen);
         this.element.src = "images/zebra.png";
-
-
-        this.gameScreen.appendChild(this.element);
     }
 }
 
