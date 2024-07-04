@@ -1,10 +1,10 @@
 class Obstacle {
     constructor(gameScreen) {
         this.gameScreen = gameScreen;
-        this.top = Math.floor(Math.random() * (this.gameScreen.offsetHeight - 150)); // offsetHeight - 150 to avoid the lion to be out of the screen
-        this.left = this.gameScreen.offsetWidth; // Start from the right side
-        this.width = 150;
         this.height = 150;
+        this.width = 150;
+        this.top = Math.floor(Math.random() * (this.gameScreen.offsetHeight - this.height));
+        this.left = this.gameScreen.offsetWidth; // Start from the right side
         this.element = document.createElement('img');
 
         this.element.src = "images/lion.png";

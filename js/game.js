@@ -188,7 +188,7 @@ class Game {
             this.obstacles.push(new BonusObstacle(this.gameScreen));
         }
 
-        const nextInterval = (Math.random() + 1) * 1500;
+        const nextInterval = (Math.random() + 1) * 1200;
         this.obstacleIntervalId = setTimeout(() => this.generateObstacle(), nextInterval);
     }
 
