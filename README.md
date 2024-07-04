@@ -21,7 +21,8 @@ The hunting hyena game is a very simple game where the hyena must go on 1 minute
 ## Backlog Functionalities
 
 - Adding a third end game screen displayed only after reaching the maximum points (ca. 500 points)
-- Adding a level system to make the game a little bit difficult
+- Adding a level system where obstacles are moving faster
+- Leveling progress will give bonuses to the player
 
 ## States
 
@@ -42,6 +43,6 @@ The hunting hyena game is a very simple game where the hyena must go on 1 minute
 
 ## Links
 
-- [Slides Link]()
+- [Slides Link](https://docs.google.com/presentation/d/10LqY7ojTD84sIfCuHY6bP5eqDL0ZA_72RHa93VvLkac/edit?usp=sharing)
 - [Github repository Link](https://github.com/mirkoeffe/The-hunting-hyena/tree/day2)
 - [Deployment Link]()

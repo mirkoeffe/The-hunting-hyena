@@ -182,13 +182,13 @@ class Game {
         if (this.gameIsOver) return;
 
         const randomValue = Math.random();
-        if (randomValue < 0.35) {
+        if (randomValue < 0.40) {
             this.obstacles.push(new Obstacle(this.gameScreen));
         } else {
             this.obstacles.push(new BonusObstacle(this.gameScreen));
         }
 
-        const nextInterval = (Math.random() + 1) * 2000;
+        const nextInterval = (Math.random() + 1) * 1500;
         this.obstacleIntervalId = setTimeout(() => this.generateObstacle(), nextInterval);
     }
 

@@ -19,6 +19,7 @@ class Obstacle {
 
     move(isPaused) {
         if (isPaused) return;
+
         this.left -= 3;
         this.updatePosition();
     }
@@ -34,6 +35,15 @@ class BonusObstacle extends Obstacle {
         super(gameScreen);
         this.element.src = "images/zebra.png";
     }
+
+    move(isPaused) {
+        if (isPaused) return;
+
+        this.left -= 7;
+        this.updatePosition();
+    }
+
+
 }
 
 export { Obstacle, BonusObstacle };
