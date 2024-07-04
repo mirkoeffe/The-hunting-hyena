@@ -1,6 +1,6 @@
 # The hunting hyena
 
-[Play the game](http://github.com)
+[Play the game](https://mirkoeffe.github.io/The-hunting-hyena/)
 
 ## Description
 
@@ -45,4 +45,4 @@ The hunting hyena game is a very simple game where the hyena must go on 1 minute
 
 - [Slides Link](https://docs.google.com/presentation/d/10LqY7ojTD84sIfCuHY6bP5eqDL0ZA_72RHa93VvLkac/edit?usp=sharing)
 - [Github repository Link](https://github.com/mirkoeffe/The-hunting-hyena/tree/day2)
-- [Deployment Link]()
+- [Deployment Link](https://mirkoeffe.github.io/The-hunting-hyena/)
