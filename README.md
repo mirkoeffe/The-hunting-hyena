@@ -29,7 +29,7 @@ The hunting hyena game is a very simple game where the hyena must go on 1 minute
 1. Homepage
 2. Instruction Screen
 3. Game Screen
-4. End Screen if a player runs out of lives
+4. End Screen if the player runs out of lives
 5. End Screen if the player runs out of time
 
 ## Technologies Used
