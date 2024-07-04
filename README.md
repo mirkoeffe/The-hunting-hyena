@@ -40,10 +40,6 @@ The hunting hyena game is a very simple game where the hyena must go on 1 minute
 - JS Classes
 - JS Modules
 
-## Data structure
-
-_List of classes and methods_
-
 ## Links
 
 - [Slides Link]()
