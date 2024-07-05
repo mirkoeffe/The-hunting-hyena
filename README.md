@@ -44,5 +44,5 @@ The hunting hyena game is a very simple game where the hyena must go on 1 minute
 ## Links
 
 - [Slides Link](https://docs.google.com/presentation/d/10LqY7ojTD84sIfCuHY6bP5eqDL0ZA_72RHa93VvLkac/edit?usp=sharing)
-- [Github repository Link](https://github.com/mirkoeffe/The-hunting-hyena/tree/day2)
+- [Github repository Link](https://github.com/mirkoeffe/The-hunting-hyena/tree/main)
 - [Deployment Link](https://mirkoeffe.github.io/The-hunting-hyena/)
